@@ -14,8 +14,11 @@ steps:
     image: golang:latest
     environment:
       GOPROXY: https://mirrors.aliyun.com/goproxy/
+      GOOS: linux
+      GOARCH: amd64
+      CGO_ENABLED: 0
     commands:
-      - CGO_ENABLED=0 go build -o demo-app
+      - go build -o demo-app
 
   - name: docker
     image: plugins/docker
