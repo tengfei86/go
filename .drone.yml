@@ -30,7 +30,7 @@ steps:
       chart: ./helm
       release: myfirstdronedeploy
       namespace: cicd
-      values: ["./helm/my_values.yaml"]
+      values_files: ["./helm/my_values.yaml"]
     when:
       event: push
       branch: master
