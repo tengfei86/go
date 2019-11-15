@@ -32,7 +32,7 @@ steps:
       STABLE_REPO_URL: https://mirror.azure.cn/kubernetes/charts/
       SERVICE_ACCOUNT: tiller
       API_SERVER: 
-         from_secret: api_serer
+         from_secret: api_server
       KUBERNETES_TOKEN:
          from_secret: kubernetes_token
       KUBERNETES_CERTIFICATE:
