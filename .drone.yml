@@ -21,14 +21,34 @@ steps:
         from_secret: docker_username
       password:
         from_secret: docker_password
-
     tags:
     - latest
     when:
       event: push
       branch: master
-trigger:
-  branch:
-  - master
+  - name: deploy
+    image: quay.io/ipedrazas/drone-helm
+    environment:
+      STABLE_REPO_URL: https://mirror.azure.cn/kubernetes/charts/
+      SERVICE_ACCOUNT: tiller
+      API_SERVER: 
+         from_secret: api_serer
+      KUBERNETES_TOKEN:
+         from_secret: kubernetes_token
+      KUBERNETES_CERTIFICATE:
+         from_secret: kubernetes_ca
+    settings:
+      client-only: true
+      wait: true
+      recreate_pods: true
+      chart: ./helm
+      release: myfirstdronedeploy
+      namespace: cicd
+      values: ["./helm/my_values.yaml"]
+    when:
+      event: push
+      branch: master
+
+
 
 
