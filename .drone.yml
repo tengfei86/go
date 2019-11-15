@@ -12,20 +12,6 @@ steps:
     commands:
       - go build -o demo-app
 
-  - name: docker
-    image: plugins/docker
-    settings:
-      repo: gaotong/drone-k8s-demo
-      use_cache: true
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-    tags:
-    - latest
-    when:
-      event: push
-      branch: master
   - name: deploy
     image: quay.io/ipedrazas/drone-helm
     environment:
